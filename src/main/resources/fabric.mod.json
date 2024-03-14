@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "fantasymining",
+	"version": "${version}",
+	"name": "Fantasy Mining Dimension",
+	"description": "A server-side mining dimension created using Fantasy.",
+	"authors": [
+		"unilock"
+	],
+	"contact": {
+		"sources": "https://github.com/unilock/FantasyMiningDim"
+	},
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "cc.unilock.fantasymining.FantasyMining"
+		]
+	},
+	"depends": {
+		"fabricloader": "*",
+		"minecraft": ">=1.20.4",
+		"fabric-api": "*",
+		"fantasy": "*"
+	}
+}
