@@ -23,6 +23,7 @@ public class StateManager extends PersistentState {
 		DataFixTypes.PLAYER // TODO?
 	);
 
+	private static final String PLAYERS_KEY = "Players";
 	private static final String HOME_POS_KEY = "HomePos";
 	private static final String HOME_WORLD_KEY = "HomeWorld";
 	private static final String MINING_POS = "MiningPos";
@@ -32,7 +33,6 @@ public class StateManager extends PersistentState {
 	@Override
 	public NbtCompound writeNbt(NbtCompound nbt) {
 		NbtCompound playersNbt = new NbtCompound();
-
 		players.forEach(((uuid, playerData) -> {
 			NbtCompound playerNbt = new NbtCompound();
 
@@ -42,8 +42,7 @@ public class StateManager extends PersistentState {
 
 			playersNbt.put(uuid.toString(), playerNbt);
 		}));
-
-		nbt.put("Players", playersNbt);
+		nbt.put(PLAYERS_KEY, playersNbt);
 
 		return nbt;
 	}
@@ -51,15 +50,16 @@ public class StateManager extends PersistentState {
 	public static StateManager createFromNbt(NbtCompound nbt) {
 		StateManager state = new StateManager();
 
-		NbtCompound playersNbt = new NbtCompound();
+		NbtCompound playersNbt = nbt.getCompound(PLAYERS_KEY);
 		playersNbt.getKeys().forEach(key -> {
+			NbtCompound playerNbt = playersNbt.getCompound(key);
 			PlayerData playerData = new PlayerData();
 
-			NbtList homePos = playersNbt.getCompound(key).getList(HOME_POS_KEY, NbtElement.DOUBLE_TYPE);
-			NbtList miningPos = playersNbt.getCompound(key).getList(MINING_POS, NbtElement.DOUBLE_TYPE);
+			NbtList homePos = playerNbt.getList(HOME_POS_KEY, NbtElement.DOUBLE_TYPE);
+			NbtList miningPos = playerNbt.getList(MINING_POS, NbtElement.DOUBLE_TYPE);
 
 			playerData.homePos = fromNbtList(homePos);
-			playerData.homeWorld = Identifier.tryParse(nbt.getString(HOME_WORLD_KEY));
+			playerData.homeWorld = Identifier.tryParse(playerNbt.getString(HOME_WORLD_KEY));
 			playerData.miningPos = fromNbtList(miningPos);
 
 			state.players.put(UUID.fromString(key), playerData);
