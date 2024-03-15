@@ -1,17 +1,17 @@
 package cc.unilock.fantasymining;
 
+import cc.unilock.fantasymining.command.MiningCommand;
+import cc.unilock.fantasymining.dimension.DimensionManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xyz.nucleoid.fantasy.Fantasy;
 
 public class FantasyMining implements ModInitializer {
 	public static final String MOD_ID = "fantasymining";
-    public static final Logger LOGGER = LoggerFactory.getLogger("Fantasy Mining Dimension");
+    //public static final Logger LOGGER = LoggerFactory.getLogger("Fantasy Mining Dimension");
 
 	private static MinecraftServer server;
 
@@ -19,13 +19,15 @@ public class FantasyMining implements ModInitializer {
 	public void onInitialize() {
 		ServerLifecycleEvents.SERVER_STARTED.register(mc -> {
 			server = mc;
+			DimensionManager.start();
 		});
 		ServerLifecycleEvents.SERVER_STOPPING.register(mc -> {
+			DimensionManager.stop();
 			server = null;
 		});
 
 		CommandRegistrationCallback.EVENT.register((dispatcher, access, environment) -> {
-			// NO-OP
+			MiningCommand.register(dispatcher);
 		});
 	}
 

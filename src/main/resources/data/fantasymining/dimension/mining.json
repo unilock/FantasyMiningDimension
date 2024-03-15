@@ -1,0 +1,11 @@
+{
+  "type": "fantasymining:mining",
+  "generator": {
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "fantasymining:mining"
+    },
+    "settings": "fantasymining:mining",
+    "type": "minecraft:noise"
+  }
+}
