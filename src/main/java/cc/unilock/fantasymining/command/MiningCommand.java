@@ -109,11 +109,12 @@ public class MiningCommand {
 
 	private static Vec3d getSafePos(ServerWorld world) {
 		WorldChunk chunk = world.getChunk(world.getRandom().nextBetween(-16, 16), world.getRandom().nextBetween(-16, 16));
+		boolean deep = FantasyMining.CONFIG.deep.value();
 		int min = world.getBottomY();
-		int max = world.getHeight();
+		int max = world.getHeight() - 1;
 
 		BlockPos.Mutable pos = new BlockPos.Mutable();
-		for (int y = min; y < max; y++) {
+		for (int y = (deep ? min : max); (deep ? y < max : y >= min); y = (deep ? y + 1 : y - 1)) {
 			for (int x = 0; x < 16; x++) {
 				for (int z = 0; z < 16; z++) {
 					pos.set(x, y, z);

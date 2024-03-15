@@ -1,10 +1,12 @@
 package cc.unilock.fantasymining;
 
 import cc.unilock.fantasymining.command.MiningCommand;
+import cc.unilock.fantasymining.config.FantasyMiningConfig;
 import cc.unilock.fantasymining.dimension.DimensionManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import xyz.nucleoid.fantasy.Fantasy;
@@ -12,6 +14,7 @@ import xyz.nucleoid.fantasy.Fantasy;
 public class FantasyMining implements ModInitializer {
 	public static final String MOD_ID = "fantasymining";
     //public static final Logger LOGGER = LoggerFactory.getLogger("Fantasy Mining Dimension");
+	public static final FantasyMiningConfig CONFIG = FantasyMiningConfig.createToml(FabricLoader.getInstance().getConfigDir(), MOD_ID, "config", FantasyMiningConfig.class);
 
 	private static MinecraftServer server;
 

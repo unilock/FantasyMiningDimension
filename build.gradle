@@ -12,6 +12,7 @@ base {
 
 repositories {
 	maven { url = "https://maven.nucleoid.xyz/" }
+	maven { url = "https://repo.sleeping.town/" }
 }
 
 loom {
@@ -29,6 +30,8 @@ dependencies {
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "xyz.nucleoid:fantasy:${project.fantasy_version}"
+
+	implementation include("folk.sisby:kaleido-config:${project.kaleido_version}")
 }
 
 processResources {
