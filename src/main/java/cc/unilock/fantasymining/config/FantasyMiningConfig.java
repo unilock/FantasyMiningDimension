@@ -6,6 +6,6 @@ import folk.sisby.kaleido.lib.quiltconfig.api.values.TrackedValue;
 
 public class FantasyMiningConfig extends ReflectiveConfig {
 	@Comment("Whether to place the player at the lowest possible point in the mining dimension upon their first teleport there.")
-	@Comment("Otherwise they're placed at the highest possible point.")
+	@Comment("Otherwise, they're placed at the highest possible point.")
 	public final TrackedValue<Boolean> deep = value(true);
 }
