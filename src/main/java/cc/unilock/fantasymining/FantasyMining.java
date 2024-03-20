@@ -16,6 +16,8 @@ public class FantasyMining implements ModInitializer {
     //public static final Logger LOGGER = LoggerFactory.getLogger("Fantasy Mining Dimension");
 	public static final FantasyMiningConfig CONFIG = FantasyMiningConfig.createToml(FabricLoader.getInstance().getConfigDir(), MOD_ID, "config", FantasyMiningConfig.class);
 
+	public static final Identifier IMPOSSIBLE = FantasyMining.id("impossible");
+
 	private static MinecraftServer server;
 
 	@Override
