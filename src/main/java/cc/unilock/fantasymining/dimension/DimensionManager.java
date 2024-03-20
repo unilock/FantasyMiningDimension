@@ -14,7 +14,7 @@ public class DimensionManager {
 	private static final RuntimeWorldConfig CONFIG = new RuntimeWorldConfig()
 		.setGenerator(FantasyMining.getServer().getOverworld().getChunkManager().getChunkGenerator())
 		.setDimensionType(TYPE)
-		.setSeed(FantasyMining.getServer().getOverworld().getSeed());
+		.setSeed(FantasyMining.CONFIG.seed.value() == 0L ? FantasyMining.getServer().getOverworld().getSeed() : FantasyMining.CONFIG.seed.value());
 
 	private static RuntimeWorldHandle handle = null;
 
