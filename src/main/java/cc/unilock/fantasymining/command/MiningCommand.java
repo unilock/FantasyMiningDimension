@@ -7,6 +7,8 @@ import cc.unilock.fantasymining.dimension.DimensionManager;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.command.CommandManager;
@@ -87,6 +89,10 @@ public class MiningCommand {
 
 		TeleportTarget target = new TeleportTarget(pos, Vec3d.ZERO, 0, 0);
 		FabricDimensions.teleport(player, world, target);
+
+		if (FantasyMining.CONFIG.slow_falling.value()) {
+			player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 200));
+		}
 	}
 
 	private static Vec3d getSafePos(ServerWorld world) {

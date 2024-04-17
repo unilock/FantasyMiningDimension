@@ -12,4 +12,8 @@ public class FantasyMiningConfig extends ReflectiveConfig {
 	@Comment("Seed to use for the mining dimension.")
 	@Comment("Set to 0 to use the overworld's seed.")
 	public final TrackedValue<Long> seed = value(0L);
+
+	@Comment("Whether to grant the player 10 seconds of Slow Falling after teleporting.")
+	@Comment("Useful in case the surrounding environment has changed since the player was last there.")
+	public final TrackedValue<Boolean> slow_falling = value(true);
 }
