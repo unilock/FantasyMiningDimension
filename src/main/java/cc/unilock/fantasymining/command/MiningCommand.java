@@ -100,7 +100,7 @@ public class MiningCommand {
 			for (int x = 0; x < 16; x++) {
 				for (int z = 0; z < 16; z++) {
 					pos.set(x, y, z);
-					if (chunk.getBlockState(pos).isAir() && chunk.getBlockState(pos.up(1)).isAir() && chunk.getBlockState(pos.up(2)).isAir()) {
+					if (chunk.getBlockState(pos).isAir() && chunk.getBlockState(pos.up()).isAir() && !chunk.getBlockState(pos.down()).isAir()) {
 						BlockPos absolutePos = chunk.getPos().getStartPos().add(pos.getX(), pos.getY(), pos.getZ());
 						return new Vec3d(absolutePos.getX() + 0.5, absolutePos.getY() + 1, absolutePos.getZ() + 0.5);
 					}
